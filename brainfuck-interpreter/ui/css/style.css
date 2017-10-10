@@ -1,0 +1,8 @@
+a.gitlink {
+    color: rgb(23, 79, 143);
+}
+
+.form-control:disabled, .form-control[readonly] {
+    background-color: #ffffff;
+    opacity: 1;
+}
