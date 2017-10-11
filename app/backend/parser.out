@@ -1,0 +1,286 @@
+Created by PLY version 3.9 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> commands
+Rule 1     commands -> command
+Rule 2     commands -> commands command
+Rule 3     command -> INCREMENT
+Rule 4     command -> DECREMENT
+Rule 5     command -> GO_LEFT
+Rule 6     command -> GO_RIGHT
+Rule 7     command -> WRITE
+Rule 8     command -> READ
+Rule 9     command -> loop
+Rule 10    loop -> OPEN_LOOP commands CLOSE_LOOP
+
+Terminals, with rules where they appear
+
+CLOSE_LOOP           : 10
+DECREMENT            : 4
+GO_LEFT              : 5
+GO_RIGHT             : 6
+INCREMENT            : 3
+OPEN_LOOP            : 10
+READ                 : 8
+WRITE                : 7
+error                : 
+
+Nonterminals, with rules where they appear
+
+command              : 1 2
+commands             : 2 10 0
+loop                 : 9
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . commands
+    (1) commands -> . command
+    (2) commands -> . commands command
+    (3) command -> . INCREMENT
+    (4) command -> . DECREMENT
+    (5) command -> . GO_LEFT
+    (6) command -> . GO_RIGHT
+    (7) command -> . WRITE
+    (8) command -> . READ
+    (9) command -> . loop
+    (10) loop -> . OPEN_LOOP commands CLOSE_LOOP
+
+    INCREMENT       shift and go to state 2
+    DECREMENT       shift and go to state 1
+    GO_LEFT         shift and go to state 5
+    GO_RIGHT        shift and go to state 7
+    WRITE           shift and go to state 4
+    READ            shift and go to state 8
+    OPEN_LOOP       shift and go to state 3
+
+    commands                       shift and go to state 6
+    loop                           shift and go to state 9
+    command                        shift and go to state 10
+
+state 1
+
+    (4) command -> DECREMENT .
+
+    CLOSE_LOOP      reduce using rule 4 (command -> DECREMENT .)
+    INCREMENT       reduce using rule 4 (command -> DECREMENT .)
+    DECREMENT       reduce using rule 4 (command -> DECREMENT .)
+    GO_LEFT         reduce using rule 4 (command -> DECREMENT .)
+    GO_RIGHT        reduce using rule 4 (command -> DECREMENT .)
+    WRITE           reduce using rule 4 (command -> DECREMENT .)
+    READ            reduce using rule 4 (command -> DECREMENT .)
+    OPEN_LOOP       reduce using rule 4 (command -> DECREMENT .)
+    $end            reduce using rule 4 (command -> DECREMENT .)
+
+
+state 2
+
+    (3) command -> INCREMENT .
+
+    CLOSE_LOOP      reduce using rule 3 (command -> INCREMENT .)
+    INCREMENT       reduce using rule 3 (command -> INCREMENT .)
+    DECREMENT       reduce using rule 3 (command -> INCREMENT .)
+    GO_LEFT         reduce using rule 3 (command -> INCREMENT .)
+    GO_RIGHT        reduce using rule 3 (command -> INCREMENT .)
+    WRITE           reduce using rule 3 (command -> INCREMENT .)
+    READ            reduce using rule 3 (command -> INCREMENT .)
+    OPEN_LOOP       reduce using rule 3 (command -> INCREMENT .)
+    $end            reduce using rule 3 (command -> INCREMENT .)
+
+
+state 3
+
+    (10) loop -> OPEN_LOOP . commands CLOSE_LOOP
+    (1) commands -> . command
+    (2) commands -> . commands command
+    (3) command -> . INCREMENT
+    (4) command -> . DECREMENT
+    (5) command -> . GO_LEFT
+    (6) command -> . GO_RIGHT
+    (7) command -> . WRITE
+    (8) command -> . READ
+    (9) command -> . loop
+    (10) loop -> . OPEN_LOOP commands CLOSE_LOOP
+
+    INCREMENT       shift and go to state 2
+    DECREMENT       shift and go to state 1
+    GO_LEFT         shift and go to state 5
+    GO_RIGHT        shift and go to state 7
+    WRITE           shift and go to state 4
+    READ            shift and go to state 8
+    OPEN_LOOP       shift and go to state 3
+
+    commands                       shift and go to state 11
+    loop                           shift and go to state 9
+    command                        shift and go to state 10
+
+state 4
+
+    (7) command -> WRITE .
+
+    CLOSE_LOOP      reduce using rule 7 (command -> WRITE .)
+    INCREMENT       reduce using rule 7 (command -> WRITE .)
+    DECREMENT       reduce using rule 7 (command -> WRITE .)
+    GO_LEFT         reduce using rule 7 (command -> WRITE .)
+    GO_RIGHT        reduce using rule 7 (command -> WRITE .)
+    WRITE           reduce using rule 7 (command -> WRITE .)
+    READ            reduce using rule 7 (command -> WRITE .)
+    OPEN_LOOP       reduce using rule 7 (command -> WRITE .)
+    $end            reduce using rule 7 (command -> WRITE .)
+
+
+state 5
+
+    (5) command -> GO_LEFT .
+
+    CLOSE_LOOP      reduce using rule 5 (command -> GO_LEFT .)
+    INCREMENT       reduce using rule 5 (command -> GO_LEFT .)
+    DECREMENT       reduce using rule 5 (command -> GO_LEFT .)
+    GO_LEFT         reduce using rule 5 (command -> GO_LEFT .)
+    GO_RIGHT        reduce using rule 5 (command -> GO_LEFT .)
+    WRITE           reduce using rule 5 (command -> GO_LEFT .)
+    READ            reduce using rule 5 (command -> GO_LEFT .)
+    OPEN_LOOP       reduce using rule 5 (command -> GO_LEFT .)
+    $end            reduce using rule 5 (command -> GO_LEFT .)
+
+
+state 6
+
+    (0) S' -> commands .
+    (2) commands -> commands . command
+    (3) command -> . INCREMENT
+    (4) command -> . DECREMENT
+    (5) command -> . GO_LEFT
+    (6) command -> . GO_RIGHT
+    (7) command -> . WRITE
+    (8) command -> . READ
+    (9) command -> . loop
+    (10) loop -> . OPEN_LOOP commands CLOSE_LOOP
+
+    INCREMENT       shift and go to state 2
+    DECREMENT       shift and go to state 1
+    GO_LEFT         shift and go to state 5
+    GO_RIGHT        shift and go to state 7
+    WRITE           shift and go to state 4
+    READ            shift and go to state 8
+    OPEN_LOOP       shift and go to state 3
+
+    loop                           shift and go to state 9
+    command                        shift and go to state 12
+
+state 7
+
+    (6) command -> GO_RIGHT .
+
+    CLOSE_LOOP      reduce using rule 6 (command -> GO_RIGHT .)
+    INCREMENT       reduce using rule 6 (command -> GO_RIGHT .)
+    DECREMENT       reduce using rule 6 (command -> GO_RIGHT .)
+    GO_LEFT         reduce using rule 6 (command -> GO_RIGHT .)
+    GO_RIGHT        reduce using rule 6 (command -> GO_RIGHT .)
+    WRITE           reduce using rule 6 (command -> GO_RIGHT .)
+    READ            reduce using rule 6 (command -> GO_RIGHT .)
+    OPEN_LOOP       reduce using rule 6 (command -> GO_RIGHT .)
+    $end            reduce using rule 6 (command -> GO_RIGHT .)
+
+
+state 8
+
+    (8) command -> READ .
+
+    CLOSE_LOOP      reduce using rule 8 (command -> READ .)
+    INCREMENT       reduce using rule 8 (command -> READ .)
+    DECREMENT       reduce using rule 8 (command -> READ .)
+    GO_LEFT         reduce using rule 8 (command -> READ .)
+    GO_RIGHT        reduce using rule 8 (command -> READ .)
+    WRITE           reduce using rule 8 (command -> READ .)
+    READ            reduce using rule 8 (command -> READ .)
+    OPEN_LOOP       reduce using rule 8 (command -> READ .)
+    $end            reduce using rule 8 (command -> READ .)
+
+
+state 9
+
+    (9) command -> loop .
+
+    CLOSE_LOOP      reduce using rule 9 (command -> loop .)
+    INCREMENT       reduce using rule 9 (command -> loop .)
+    DECREMENT       reduce using rule 9 (command -> loop .)
+    GO_LEFT         reduce using rule 9 (command -> loop .)
+    GO_RIGHT        reduce using rule 9 (command -> loop .)
+    WRITE           reduce using rule 9 (command -> loop .)
+    READ            reduce using rule 9 (command -> loop .)
+    OPEN_LOOP       reduce using rule 9 (command -> loop .)
+    $end            reduce using rule 9 (command -> loop .)
+
+
+state 10
+
+    (1) commands -> command .
+
+    CLOSE_LOOP      reduce using rule 1 (commands -> command .)
+    INCREMENT       reduce using rule 1 (commands -> command .)
+    DECREMENT       reduce using rule 1 (commands -> command .)
+    GO_LEFT         reduce using rule 1 (commands -> command .)
+    GO_RIGHT        reduce using rule 1 (commands -> command .)
+    WRITE           reduce using rule 1 (commands -> command .)
+    READ            reduce using rule 1 (commands -> command .)
+    OPEN_LOOP       reduce using rule 1 (commands -> command .)
+    $end            reduce using rule 1 (commands -> command .)
+
+
+state 11
+
+    (10) loop -> OPEN_LOOP commands . CLOSE_LOOP
+    (2) commands -> commands . command
+    (3) command -> . INCREMENT
+    (4) command -> . DECREMENT
+    (5) command -> . GO_LEFT
+    (6) command -> . GO_RIGHT
+    (7) command -> . WRITE
+    (8) command -> . READ
+    (9) command -> . loop
+    (10) loop -> . OPEN_LOOP commands CLOSE_LOOP
+
+    CLOSE_LOOP      shift and go to state 13
+    INCREMENT       shift and go to state 2
+    DECREMENT       shift and go to state 1
+    GO_LEFT         shift and go to state 5
+    GO_RIGHT        shift and go to state 7
+    WRITE           shift and go to state 4
+    READ            shift and go to state 8
+    OPEN_LOOP       shift and go to state 3
+
+    loop                           shift and go to state 9
+    command                        shift and go to state 12
+
+state 12
+
+    (2) commands -> commands command .
+
+    CLOSE_LOOP      reduce using rule 2 (commands -> commands command .)
+    INCREMENT       reduce using rule 2 (commands -> commands command .)
+    DECREMENT       reduce using rule 2 (commands -> commands command .)
+    GO_LEFT         reduce using rule 2 (commands -> commands command .)
+    GO_RIGHT        reduce using rule 2 (commands -> commands command .)
+    WRITE           reduce using rule 2 (commands -> commands command .)
+    READ            reduce using rule 2 (commands -> commands command .)
+    OPEN_LOOP       reduce using rule 2 (commands -> commands command .)
+    $end            reduce using rule 2 (commands -> commands command .)
+
+
+state 13
+
+    (10) loop -> OPEN_LOOP commands CLOSE_LOOP .
+
+    INCREMENT       reduce using rule 10 (loop -> OPEN_LOOP commands CLOSE_LOOP .)
+    DECREMENT       reduce using rule 10 (loop -> OPEN_LOOP commands CLOSE_LOOP .)
+    GO_LEFT         reduce using rule 10 (loop -> OPEN_LOOP commands CLOSE_LOOP .)
+    GO_RIGHT        reduce using rule 10 (loop -> OPEN_LOOP commands CLOSE_LOOP .)
+    WRITE           reduce using rule 10 (loop -> OPEN_LOOP commands CLOSE_LOOP .)
+    READ            reduce using rule 10 (loop -> OPEN_LOOP commands CLOSE_LOOP .)
+    OPEN_LOOP       reduce using rule 10 (loop -> OPEN_LOOP commands CLOSE_LOOP .)
+    $end            reduce using rule 10 (loop -> OPEN_LOOP commands CLOSE_LOOP .)
+    CLOSE_LOOP      reduce using rule 10 (loop -> OPEN_LOOP commands CLOSE_LOOP .)
+

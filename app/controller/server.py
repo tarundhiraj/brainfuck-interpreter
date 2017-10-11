@@ -21,7 +21,7 @@ class InterpreterWebService(object):
     
     @cherrypy.tools.accept(media ='text/plain')
     
-    def POST(self):
+    def POST(self, **kwargs):
         #TODO: call interpreter
         pass
 
@@ -29,14 +29,11 @@ class InterpreterWebService(object):
 class FormatterWebService(object):
     @cherrypy.tools.accept(media = 'text/plain')
 
-    def POST(self):
-        src_code = cherrypy.request.body.read('code');
-        formatter = neatify.Neatify()
+    def POST(self, **kwargs):
+        src_code = kwargs['code'] 
+        formatter = Neatify()
         formatted_code = formatter.format(src_code)
-        cherrypy.response.status = '200 OK'
-        cherrypy.response.body = { 'code' : formatted_code }
-        return cherrypy.response
-
+        return formatted_code
 
 def start_server():
     webapp = UI()
