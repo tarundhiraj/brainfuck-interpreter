@@ -12,6 +12,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
         crossorigin="anonymous">
     <link rel="stylesheet" href="/static/css/style.css">
+
+    <!-- Javascript -->
+    <script src="/static/js/utils.js"></script>
+    <script src="/static/js/brainfuck_interpreter.js"></script>
 </head>
 
 <body>
@@ -47,22 +51,22 @@
                     <td colspan="2">
                         <div class="form-group">
                             <label for="code_area">Write Your Code Here</label>
-                            <textarea class="form-control" style="resize:none" rows="20" id="code_area" cols="60" placeholder="Brainfuck Code"></textarea>
+                            <textarea id="bf-src-code-ta" class="form-control" style="resize:none" rows="20" id="bf-src-code-ta" cols="60" placeholder="Brainfuck Code"></textarea>
                         </div>
                     </td>
                     <td>
                         <div class="form-group">
                             <label for="result">Result</label>
-                            <textarea class="form-control" style="resize:none" rows="20" id="result" readonly></textarea>
+                            <textarea id="interpreted-result-ta" class="form-control" style="resize:none" rows="20" id="interpreted-result-ta" readonly></textarea>
                         </div>
 
                     </td>
                 </tr>
                 <tr class="success">
                     <td>
-                        <button type="button" class="btn btn-success">Run</button>
+                        <button id="run-btn" type="button" class="btn btn-success">Run</button>
                         &emsp; &emsp; &emsp; &emsp;
-                        <button type="button" class="btn btn-primary">Neatify</button>
+                        <button id="neatify-btn" type="button" class="btn btn-primary">Neatify</button>
                     </td>
                 </tr>
             </table>
