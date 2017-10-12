@@ -6,3 +6,9 @@ a.gitlink {
     background-color: #ffffff;
     opacity: 1;
 }
+
+textarea {
+    overflow-y: scroll;
+    resize: none; 
+}
+
