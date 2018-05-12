@@ -1,52 +1,47 @@
-import os
-import sys
 import cherrypy
-from app.backend.neatify import Neatify
-'''
-@author: tdhiraj
-'''
-path = os.getcwd()
 
-#This class renders the html page of the interpreter.
+from app.backend.brainfuck_interpreter import BrainfuckProgram
+from app.backend.neatify import Neatify
+
+'''
+@author: tdhiraj, sohilladhani
+'''
+
+
+# This class renders the html page of the interpreter.
 class UI(object):
     @cherrypy.expose
     def index(self):
-        return open(path + '/app/ui/index.html')
-        
+        return open('../ui/index.html')
 
-#This class will expose functionalities via REST API
+
+# This class will expose functionalities via REST API
 
 @cherrypy.expose
 class InterpreterWebService(object):
-    
-    @cherrypy.tools.accept(media ='text/plain')
-    
-    def POST(self, **kwargs):
-        #TODO: call interpreter
-        pass
+    @cherrypy.tools.accept(media='text/plain')
+    def POST(self):
+        bf_source_code = cherrypy.request.body.read(int(cherrypy.request.headers['Content-Length']))
+        return BrainfuckProgram(bf_source_code).run()
+
 
 @cherrypy.expose
 class FormatterWebService(object):
-    @cherrypy.tools.accept(media = 'text/plain')
-
-    def POST(self, **kwargs):
-        src_code = kwargs['code'] 
+    @cherrypy.tools.accept(media='text/plain')
+    def POST(self):
+        src_code = cherrypy.request.body.read(int(cherrypy.request.headers['Content-Length']))
         formatter = Neatify()
         formatted_code = formatter.format(src_code)
         return formatted_code
 
-def start_server():
+
+if __name__ == '__main__':
     webapp = UI()
     webapp.interpreter = InterpreterWebService()
     webapp.formatter = FormatterWebService()
 
-    #TODO: keep an option to specify the port number to the user so that port 
-    #chosen as per the user's will
-    cherrypy.config.update(path + '/app/controller/' + 'server.conf')
-    
-    #Open app.conf for app related configuration
-    cherrypy.quickstart(webapp, '/', path + '/app/controller/' + 'app.conf')
-          
-        
-    
-    
+    # chosen as per the user's will
+    cherrypy.config.update('server.conf')
+
+    # Open app.conf for app related configuration
+    cherrypy.quickstart(webapp, '/', 'app.conf')

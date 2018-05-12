@@ -2,12 +2,15 @@ import ply.yacc as yacc
 import ply.lex as lex
 
 """
+@author: sohilladhani
+"""
+
+"""
 Globals
 """
 
 g_number_of_cells = 3000
 g_program_output_list = []
-
 """
     Lexer code starts here
 """
@@ -164,11 +167,14 @@ class BrainfuckProgram:
         self.src_program = src_program
 
     def run(self):
+        global g_program_output_list
         self.data = [0] * g_number_of_cells
         self.location = 0
         commands = self.parse(self.src_program)
         commands.run(self)
-        return ''.join(g_program_output_list)
+        bf_output = ''.join(g_program_output_list)
+        g_program_output_list = []
+        return bf_output
 
     def parse(self, src_program):
         lexer = lex.lex()
