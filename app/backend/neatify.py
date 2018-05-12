@@ -5,7 +5,6 @@
 '''
 
 
-
 def tabs(indent):
     return indent * ' ' * 4
 
@@ -15,7 +14,7 @@ class Neatify(object):
         formatted_code = []
         indent = 0
         prev_ch = ''
-        
+
         for ch in code:
             if ch == '[':
                 formatted_code.append('\n')
@@ -33,10 +32,5 @@ class Neatify(object):
                 else:
                     formatted_code.append(ch)
             prev_ch = ch
-                
+
         return ''.join(formatted_code)
-                
-                
-          
-                
-	

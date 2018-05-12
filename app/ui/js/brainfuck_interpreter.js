@@ -2,7 +2,7 @@
 window.onload = initPage;
 
 function initPage() {
-    attachEventToRunBtn();
+    attachEventsToRunBtn();
     attachEventToNeatifyBtn();
 }
 
@@ -88,19 +88,79 @@ function neatifyBFSource() {
 }
 
 /*
-    This function attaches event to Run button
+    This function attaches event(s) to Run button
 */
 
-function attachEventToRunBtn() {
+function attachEventsToRunBtn() {
     var runBtn = document.getElementById('run-btn');
     addEventHandler(runBtn, 'click', interpretBFSource);
+    addEventHandler(runBtn, 'click', addRecentCode);
 }
 
 /*
-    This function attaches event to Neatify button
+    This function attaches event(s) to Neatify button
 */
 
 function attachEventToNeatifyBtn() {
     var neatifyBtn = document.getElementById('neatify-btn');
     addEventHandler(neatifyBtn, 'click', neatifyBFSource);
+}
+
+
+function randomString(length){
+    var str = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    randomstr = '';
+
+    for(i=0; i < length; ++i){
+        randomstr += str[Math.floor(Math.random()*str.length)];
+    }
+
+    return randomstr;
+}
+
+function hashCode(str){
+    var hash = 17;
+    for(var i = 0; i<str.length; ++i){
+        hash = 31*hash + str[i]
+    }
+
+    return hash;
+}
+
+
+function addRecentCode(){
+    var code = document.getElementById('bf-src-code-ta').value;
+    //code validation
+    //Code is empty
+    if(code == ''){
+       alert("Interpreter needs bf source code to execute.");
+       return;
+    }
+    //Code is not bf
+    var pat = /^[<>.+\[\]\s\-]+$/;
+    if(code.search(pat) == -1){
+        alert("Not in proper brainfuck language");
+        return;
+    }
+    var hash = hashCode(code);
+    if(localStorage.getItem(hash) != null){
+        return;
+    }
+    //1 is dummy value
+    localStorage.setItem(hash,1);
+    var tag = randomString(6);
+    localStorage.setItem(tag, code);
+
+    recent_code = document.getElementById('recent_code');
+    li_element = document.createElement('li');
+    anchor = document.createElement('a');
+    addEventHandler(anchor, 'click', function(){
+        document.getElementById('bf-src-code-ta').value = localStorage.getItem(tag);
+        return false;
+    });
+    anchor.innerHTML = tag;
+    anchor.href = '#';
+    li_element.appendChild(anchor);
+    recent_code.appendChild(li_element);
+
 }

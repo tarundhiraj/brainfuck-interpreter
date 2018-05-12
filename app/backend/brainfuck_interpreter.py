@@ -11,7 +11,6 @@ Globals
 
 g_number_of_cells = 3000
 g_program_output_list = []
-
 """
     Lexer code starts here
 """
